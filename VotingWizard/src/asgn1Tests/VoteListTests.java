@@ -9,6 +9,10 @@ import asgn1Election.CandidateIndex;
 import asgn1Election.Vote;
 import asgn1Election.VoteList;
 
+/**
+ * This class is used to test the function in class VoteList
+ * @author Toni Lam
+ */
 public class VoteListTests {
 
 	@Before @Test /* Initialize attributes' value */
@@ -85,7 +89,9 @@ public class VoteListTests {
 	 		* postcondition: the toString() result is the same as expected, and the vote is counted for valid
 	 		*/
 	public void voteElementOutOfRange() {
-		Vote tester = new VoteList(3);
+		final int LIMIT = 3;
+
+		Vote tester = new VoteList(LIMIT);
 		int sampleVote[] = new int[] {1, 2, 5};
 		String expectedString = "1 2 5 ";
 		boolean validVote = true;

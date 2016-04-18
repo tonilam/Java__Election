@@ -19,6 +19,10 @@ import asgn1Election.VoteCollection;
 import asgn1Election.VoteList;
 import asgn1Util.NumbersException;
 
+/**
+ * This class is used to test the function in class VoteCollection
+ * @author Toni Lam
+ */
 public class VoteCollectionTests {
 
 	static Random rand;
@@ -69,6 +73,7 @@ public class VoteCollectionTests {
 		final int numCandidates = 3;
 		final int testSize = 100000;
 		VoteCollection tester = new VoteCollection(numCandidates);
+		
 		for (int i = 0; i < testSize; ++i) {
 			tester.includeFormalVote(generateUniqueRandomVote());
 			assertEquals(i+1, tester.getFormalCount());
@@ -88,6 +93,7 @@ public class VoteCollectionTests {
 		final int testSize = 100000;
 		int countInformal = 0;
 		VoteCollection tester = new VoteCollection(numCandidates);
+		
 		for (int i = 0; i < testSize; ++i) {
 			if (i % 2 == 0) {
 				// all even number vote is treated as formal vote
@@ -104,10 +110,12 @@ public class VoteCollectionTests {
 	}
 
 	/** Purpose of test:
+	 * Check if the countPrimaryVotes() function works properly
+	 * precondition: testing file not empty
+	 * postcondition: findWinner() result match expected string.
 	 * @throws NumbersException 
 	 * @throws IOException 
 	 * @throws FileNotFoundException 
-	 *
 	 */
 	@Test
 	public void testCountPrimaryVotes() throws ElectionException, FileNotFoundException, IOException, NumbersException {
@@ -128,6 +136,7 @@ public class VoteCollectionTests {
 			
 		ElectionManager em = new ElectionManager();
 		String simpleElectionsList = ".//data//devtestdata/simple_elections.lst";
+		
 		em.getElectionsFromFile(simpleElectionsList);
 		em.setElection(em.getElectionList().get(0));
 		
@@ -146,6 +155,7 @@ public class VoteCollectionTests {
 		int numCandidates = 3;
 		Vote voteList = new VoteList(numCandidates);
 		VoteCollection vc = new VoteCollection(numCandidates);
+		
 		for (int i = 1; i <= numCandidates; ++i) {
 			voteList.addPref(i);
 		}
@@ -162,16 +172,11 @@ public class VoteCollectionTests {
 	
 	/*********************** PRIVATE METHOD **************************/
 	
-	@SuppressWarnings("unused")
-	private Vote generateRandomVote() {
-		Vote sample = new VoteList(numCandidates);
-		for (int votePref = 1; votePref <= numCandidates; ++votePref) {
-			sample.addPref(rand.nextInt(numCandidates) + 1);
-		}
-		//System.out.println(sample.toString());
-		return sample;
-	}
-
+	/**
+	 * Helper function to generate unique random vote for a valid vote.
+	 * precondition: true
+	 * @return a valid vote in randomly
+	 */
 	private Vote generateUniqueRandomVote() {
 		Vote sample = new VoteList(numCandidates);
 		Set<Integer> voted = new HashSet<Integer>();

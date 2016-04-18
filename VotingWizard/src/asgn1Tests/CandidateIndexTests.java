@@ -2,11 +2,17 @@ package asgn1Tests;
 
 import static org.junit.Assert.*;
 
+
 import org.junit.Before;
 import org.junit.Test;
 
 import asgn1Election.CandidateIndex;
 
+/**
+ * This class is used to test the function in class CandidateIndex 
+ * 
+ * @author Toni Lam
+ */
 public class CandidateIndexTests {
 	
 	private static class Sample {
@@ -122,6 +128,7 @@ public class CandidateIndexTests {
 	public void testSingleIncrementIndex() {
 		int counterIncrement = Sample.DEFAULT;
 		CandidateIndex tester = new CandidateIndex(Sample.DEFAULT);
+		
 		tester.incrementIndex();
 		++counterIncrement;
 		assertEquals(Integer.toString(counterIncrement), tester.toString());
@@ -136,6 +143,7 @@ public class CandidateIndexTests {
 		int counterIncrement = Sample.DEFAULT;
 		CandidateIndex tester = new CandidateIndex(Sample.DEFAULT);
 		int stepToCheck = 1000;
+		
 		for (int i = 0; i < stepToCheck; ++i) {
 			tester.incrementIndex();
 			++counterIncrement;

@@ -1,5 +1,6 @@
 package asgn1Tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -16,6 +17,10 @@ import asgn1Election.Vote;
 import asgn1Election.VoteList;
 import asgn1Util.NumbersException;
 
+/**
+ * This class is used to test the function in class SimpleElection
+ * @author Toni Lam
+ */
 public class SimpleElectionTests {
 	
 	ElectionManager eManager;
@@ -50,26 +55,59 @@ public class SimpleElectionTests {
 	}
 
 
+	/** Purpose of the test:
+	 * check if the findWinner() function return the result in expected format.
+	 * precondition: testing file not empty
+	 * postcondition: result from the file match the expected string.
+	 * @throws FileNotFoundException
+	 * @throws ElectionException
+	 * @throws IOException
+	 * @throws NumbersException
+	 */
 	@Test
-	public void canFindWinner() throws FileNotFoundException, ElectionException, IOException, NumbersException {
+	public void testFindWinner() throws FileNotFoundException, ElectionException, IOException, NumbersException {
+		String expectedString = "Results for election: MinMorgulValeSimple\n"
+				+ "Enrolment: 25\n"
+				+ "\n"
+				+ "Shelob              Monster Spider Party          (MSP)\n"
+				+ "Gorbag              Filthy Orc Party              (FOP)\n"
+				+ "Shagrat             Stinking Orc Party            (SOP)\n"
+				+ "\n"
+				+ "\n"
+				+ "Counting primary votes; 3 alternatives available\n"
+				+ "\n"
+				+ "Simple election: MinMorgulValeSimple\n"
+				+ "\n"
+				+ "Shelob (MSP)                 8\n"
+				+ "Gorbag (FOP)                 8\n"
+				+ "Shagrat (SOP)                3\n"
+				+ "\n"
+				+ "Informal                     4\n"
+				+ "\n"
+				+ "Votes Cast                  23\n"
+				+ "\n"
+				+ "\n"
+				+ "Candidate Shelob (Monster Spider Party) is the winner with 8 votes...\n";
 		String result;
-		for (Election election : eManager.getElectionList()) {		
-			eManager.setElection(election);
-			result = eManager.manageCount();
-			assertFalse(result.isEmpty());
-		}
+		Election election = eManager.getElectionList().get(0);		
+		
+		eManager.setElection(election);
+		result = eManager.manageCount();
+		assertEquals(expectedString, result);
 	}
 
+	/** Purpose of the test:
+	 * This test is used to pick up an election and evaluate each sample vote to check if inFormal()
+	 * function returns the expected result
+	 * precondition: the checking file is not empty
+	 * postcondition: pass all test
+	 * @throws FileNotFoundException
+	 * @throws ElectionException
+	 * @throws IOException
+	 * @throws NumbersException
+	 */
 	@Test
-		  /**
-		   * This test is used to pick up an election and evaluate each sample vote to check if inFormal()
-		   * function returns the expected result
-		   * @throws FileNotFoundException
-		   * @throws ElectionException
-		   * @throws IOException
-		   * @throws NumbersException
-		   */
-	public void verifyIsFormal() throws FileNotFoundException, ElectionException, IOException, NumbersException {
+	public void testIsFormal() throws FileNotFoundException, ElectionException, IOException, NumbersException {
 		Election tester;
 		Vote v;
 		

@@ -8,6 +8,11 @@ import org.junit.Test;
 import asgn1Election.Candidate;
 import asgn1Election.ElectionException;
 
+/**
+ * This class is used to test the function in class Candidate 
+ * 
+ * @author Toni Lam
+ */
 public class CandidateTest {
 	
 	private static class Sample {
@@ -206,6 +211,7 @@ public class CandidateTest {
 		int counterIncrement = Sample.VOTE_COUNT;
 		Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, Sample.ABBREV, Sample.VOTE_COUNT);
 		int stepToCheck = 1000;
+		
 		for (int i = 0; i < stepToCheck; ++i) {
 			tester.incrementVoteCount();
 			++counterIncrement;
