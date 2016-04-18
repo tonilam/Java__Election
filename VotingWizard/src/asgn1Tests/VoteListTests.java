@@ -130,8 +130,9 @@ public class VoteListTests {
 			* 
 			*/
 	public void verifyNormalInvertVote() {
-		int sampleVote[] = new int[] {3, 1, 5, 4, 2};
-		assertEquals("1 4 0 3 2 ", assignList(sampleVote).invertVote().toString());
+		System.out.println("verifyNormalInvertVote starts...");
+		int sampleVote[] = new int[] {2, 6, 5, 3, 4, 7, 1, 8};
+		assertEquals("7 1 4 5 3 2 6 8 ", assignList(sampleVote).invertVote().toString());
 	}
 
 	@Test /** Purpose of test:
@@ -139,7 +140,7 @@ public class VoteListTests {
 			*/
 	public void verifyDuplicatedInvertVote() {
 		int sampleVote[] = new int[] {5, 3, 5, 3, 2};
-		assertEquals("4 1 3 0 2 ", assignList(sampleVote).invertVote().toString());
+		assertEquals("5 2 4 1 3 ", assignList(sampleVote).invertVote().toString());
 	}
 
 	@Test /** Purpose of test:
@@ -147,7 +148,7 @@ public class VoteListTests {
 			*/
 	public void verifyOutOfRangeInvertVote() {
 		int sampleVote[] = new int[] {5, 100, 999, 3, 2};
-		assertEquals("4 3 0 1 2 ", assignList(sampleVote).invertVote().toString());
+		assertEquals("5 4 1 2 3 ", assignList(sampleVote).invertVote().toString());
 	}
 
 	public Vote assignList(int sampleVote[]) {
