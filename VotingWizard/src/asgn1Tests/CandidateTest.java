@@ -25,235 +25,206 @@ public class CandidateTest {
 	 *  This section will check each function of the Candidate class
 	 **/
 	
-	@Test /* Check if the candidate is create with appropriate parameter */
-	public void normalConstructor() {
-		try {
-			@SuppressWarnings("unused")
-			Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, Sample.ABBREV, Sample.VOTE_COUNT);
-		} catch (ElectionException e) {
-			fail("Exception " + e);
-		}
-	}
-
-	@Test /* Check if the candidate constructor has invalid parameter.
-	 	   * In this case, the name is empty
-	 	   */
-	public void constructorEmptyName() {
+	/** Purpose of the test:
+	 * Check if the candidate constructor has invalid parameter.
+	 * In this case, the name is empty
+	 * precondition: 1. Sample is declared correctly.
+	 *               2. name is an empty string and passes to the constructor
+	 * postcondition: election exception thrown inside the test 
+	 * @throws ElectionException 
+	 */
+	@Test (expected = ElectionException.class)
+	public void testConstructorEmptyName() throws ElectionException {
 		String emptyName = "";
-		try {
-			@SuppressWarnings("unused")
-			Candidate tester = new Candidate(emptyName, Sample.PARTY, Sample.ABBREV, Sample.VOTE_COUNT);
-			fail("Exception not caught.");
-		} catch (ElectionException e) {
-			assertEquals("Election Exception: " + "Cannot create candidate. Invalid parameter.", e.getMessage());
-		}
+		@SuppressWarnings("unused")
+		Candidate tester = new Candidate(emptyName, Sample.PARTY, Sample.ABBREV, Sample.VOTE_COUNT);
 	}
 
-	@Test /* Check if the candidate constructor has invalid parameter.
-	 	   * In this case, the name is null
-	 	   */
-	public void constructorNullName() {
+	/** Purpose of the test:
+	 * Check if the candidate constructor has invalid parameter.
+	 * In this case, the name is null
+	 * precondition: 1. Sample is declared correctly.
+	 *               2. name is null and passes to the constructor
+	 * postcondition: election exception thrown inside the test 
+	 * @throws ElectionException 
+	 */
+	@Test (expected = ElectionException.class)
+	public void testConstructorNullName() throws ElectionException {
 		String nullName = new String();
-		try {
-			@SuppressWarnings("unused")
-			Candidate tester = new Candidate(nullName, Sample.PARTY, Sample.ABBREV, Sample.VOTE_COUNT);
-			fail("Exception not caught.");
-		} catch (ElectionException e) {
-			assertEquals("Election Exception: " + "Cannot create candidate. Invalid parameter.", e.getMessage());
-		}
+		@SuppressWarnings("unused")
+		Candidate tester = new Candidate(nullName, Sample.PARTY, Sample.ABBREV, Sample.VOTE_COUNT);
 	}
 
-	@Test /* Check if the candidate constructor has invalid parameter.
-		   * In this case, the party is empty
-		   */
-	public void constructorEmptyParty() {
+	/** Purpose of the test:
+	 * Check if the candidate constructor has invalid parameter.
+	 * In this case, the party is empty
+	 * precondition: 1. Sample is declared correctly.
+	 *               2. party is an empty string and passes to the constructor
+	 * postcondition: election exception thrown inside the test 
+	 * @throws ElectionException 
+	 */
+	@Test (expected = ElectionException.class)
+	public void testConstructorEmptyParty() throws ElectionException {
 		String emptyParty = "";
-		try {
-			@SuppressWarnings("unused")
-			Candidate tester = new Candidate(Sample.NAME, emptyParty, Sample.ABBREV, Sample.VOTE_COUNT);
-			fail("Exception not caught.");
-		} catch (ElectionException e) {
-			assertEquals("Election Exception: " + "Cannot create candidate. Invalid parameter.", e.getMessage());
-		}
+		@SuppressWarnings("unused")
+		Candidate tester = new Candidate(Sample.NAME, emptyParty, Sample.ABBREV, Sample.VOTE_COUNT);
 	}
 
-	@Test /* Check if the candidate constructor has invalid parameter.
-		   * In this case, the party is null
-		   */
-	public void constructorNullParty() {
+	/** Purpose of the test:
+	 * Check if the candidate constructor has invalid parameter.
+	 * In this case, the party is null
+	 * precondition: 1. Sample is declared correctly.
+	 *               2. party is null and passes to the constructor
+	 * postcondition: election exception thrown inside the test 
+	 * @throws ElectionException 
+	 */
+	@Test (expected = ElectionException.class)
+	public void testCestConstructorNullParty() throws ElectionException {
 		String nullParty = new String();
-		try {
-			@SuppressWarnings("unused")
-			Candidate tester = new Candidate(Sample.NAME, nullParty, Sample.ABBREV, Sample.VOTE_COUNT);
-			fail("Exception not caught.");
-		} catch (ElectionException e) {
-			assertEquals("Election Exception: " + "Cannot create candidate. Invalid parameter.", e.getMessage());
-		}
+		@SuppressWarnings("unused")
+		Candidate tester = new Candidate(Sample.NAME, nullParty, Sample.ABBREV, Sample.VOTE_COUNT);
 	}
 	
-	@Test /* Check if the candidate constructor has invalid parameter.
-		   * In this case, the abbrev is empty
-		   */
-	public void constructorEmptyAbbrev() {
+	/** Purpose of the test:
+	 * Check if the candidate constructor has invalid parameter.
+	 * In this case, the abbrev is empty
+	 * precondition: 1. Sample is declared correctly.
+	 *               2. abbrev is an empty string and passes to the constructor
+	 * postcondition: election exception thrown inside the test 
+	 * @throws ElectionException 
+	 */
+	@Test (expected = ElectionException.class)
+	public void testConstructorEmptyAbbrev() throws ElectionException {
 		String emptyAbbrev = "";
-		try {
-			@SuppressWarnings("unused")
-			Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, emptyAbbrev, Sample.VOTE_COUNT);
-			fail("Exception not caught.");
-		} catch (ElectionException e) {
-			assertEquals("Election Exception: " + "Cannot create candidate. Invalid parameter.", e.getMessage());
-		}
+		@SuppressWarnings("unused")
+		Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, emptyAbbrev, Sample.VOTE_COUNT);
 	}
 
-	@Test /* Check if the candidate constructor has invalid parameter.
-		   * In this case, the abbrev is null
-		   */
-	public void constructorNullAbbrev() {
+	/** Purpose of the test:
+	 * Check if the candidate constructor has invalid parameter.
+	 * In this case, the abbrev is null
+	 * precondition: 1. Sample is declared correctly.
+	 *               2. abbrev is null and passes to the constructor
+	 * postcondition: election exception thrown inside the test 
+	 * @throws ElectionException 
+	 */
+	@Test (expected = ElectionException.class)
+	public void TestConstructorNullAbbrev() throws ElectionException {
 		String nullAbbrev = new String();
-		try {
-			@SuppressWarnings("unused")
-			Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, nullAbbrev, Sample.VOTE_COUNT);
-			fail("Exception not caught.");
-		} catch (ElectionException e) {
-			assertEquals("Election Exception: " + "Cannot create candidate. Invalid parameter.", e.getMessage());
-		}
+		@SuppressWarnings("unused")
+		Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, nullAbbrev, Sample.VOTE_COUNT);
 	}
 	
-	@Test /* Check if the candidate constructor has invalid parameter.
-		   * In this case, the voteCount is negative
-		   */
-	public void constructorNegativeVoteCount() {
+	/** Purpose of the test:
+	 * Check if the candidate constructor has invalid parameter.
+	 * In this case, the voteCount is negative
+	 * precondition: 1. Sample is declared correctly.
+	 *               2. negative vote count is passes to the constructor
+	 * postcondition: election exception thrown inside the test 
+	 * @throws ElectionException 
+	 */
+	@Test (expected = ElectionException.class)
+	public void TestConstructorNegativeVoteCount() throws ElectionException {
 		int negativeVoteCount = -1;
-		try {
-			@SuppressWarnings("unused")
-			Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, Sample.ABBREV, negativeVoteCount);
-			fail("Exception not caught.");
-		} catch (ElectionException e) {
-			assertEquals("Election Exception: " + "Cannot create candidate. Invalid parameter.", e.getMessage());
-		}
+		@SuppressWarnings("unused")
+		Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, Sample.ABBREV, negativeVoteCount);
 	}
 
-	@Test /* Check if the candidate constructor works in boundary case.
-	   * In this case, the voteCount is zero
-	   */
-	public void constructorZeroVoteCount() {
+	/** Purpose of the test:
+	 * Check if the candidate constructor works in boundary case.
+	 * In this case, the voteCount is zero
+	 * precondition: 1. Sample is declared correctly.
+	 *               2. zero vote count is passes to the constructor
+	 * postcondition: no exception thrown 
+	 */
+	@Test
+	public void testConstructorZeroVoteCount() throws ElectionException {
 		int zeroVoteCount = 0;
-		try {
-			@SuppressWarnings("unused")
-			Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, Sample.ABBREV, zeroVoteCount);
-		} catch (ElectionException e) {
-			fail("This test should not have an exception" + e.getMessage());
-		}
+		@SuppressWarnings("unused")
+		Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, Sample.ABBREV, zeroVoteCount);
 	}
 
-	@Test /* Check if the candidate return correct vote count */
-	public void correctVoteCount() {
-		try {
-			Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, Sample.ABBREV, Sample.VOTE_COUNT);
-			assertEquals(Sample.VOTE_COUNT, tester.getVoteCount());
-		} catch (ElectionException e) {
-			fail("This test should not have an exception" + e.getMessage());
-		}
+	/** Purpose of the test:
+	 * Check if the candidate return correct Candidate listing
+	 * precondition: Sample is declared correctly.
+	 * postcondition: candidateListing return the same value as expected.
+	 */
+	@Test
+	public void testCandidateListing() throws ElectionException {
+		String expectedString = Sample.NAME + "                " +
+								Sample.PARTY + "                         " +
+								"(" + Sample.ABBREV + ")\n";
+		Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, Sample.ABBREV, Sample.VOTE_COUNT);
+		assertEquals(expectedString, tester.candidateListing());
 	}
 	
-	@Test /* Check if the candidate return correct Candidate listing */
-	public void correctCandidateListing() {
-		try {
-			Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, Sample.ABBREV, Sample.VOTE_COUNT);
-			assertEquals(Sample.NAME + "                " +
-					Sample.PARTY + "                         " +
-					"(" + Sample.ABBREV + ")\n", tester.candidateListing());
-		} catch (ElectionException e) {
-			fail("This test should not have an exception" + e.getMessage());
-		}
+	/** Purpose of the test:
+	 * Check if the candidate return identical copy
+	 * precondition: Sample is declared correctly.
+	 * postcondition: two copy are the same
+	 */
+	@Test
+	public void testIdenticalCopy() throws ElectionException {
+		Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, Sample.ABBREV, Sample.VOTE_COUNT);
+		Candidate testerCpoy = tester.copy();
+		assertTrue(compareCandidate(tester, testerCpoy));
+	}
+
+	/** Purpose of the test:
+	 * Check if the copy is working independent from the original one
+	 * precondition: Sample is declared correctly.
+	 * postcondition: changes in copy doesn't change the original one
+	 */
+	@Test
+	public void testIndependentCopy() throws ElectionException {
+		Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, Sample.ABBREV, Sample.VOTE_COUNT);
+		Candidate testerCpoy = tester.copy();
+		testerCpoy.incrementVoteCount();
+		assertFalse(compareCandidate(tester, testerCpoy));
 	}
 	
-	@Test /* Check if the candidate return correct vote listing9[ */
-	public void correctCopy() {
-		try {
-			Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, Sample.ABBREV, Sample.VOTE_COUNT);
-			Candidate testerCpoy = tester.copy();
-
-			// assert if the copy is equal to the original
-			assertTrue(compareCandidate(tester, testerCpoy));
-			
-			// assert if a change in the copy should not make change to the original
-			testerCpoy.incrementVoteCount();
-			assertFalse(compareCandidate(tester, testerCpoy));
-		} catch (ElectionException e) {
-			fail("This test should not have an exception" + e.getMessage());
-		}
+	/** Purpose of the test:
+	 * Check if the candidate return correct vote increment
+	 * precondition: Sample is declared correctly.
+	 * postcondition: the candidate vote count is increased by 1
+	 */
+	@Test
+	public void testSingleIncrementCount() throws ElectionException {
+		int counterIncrement = Sample.VOTE_COUNT;
+		Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, Sample.ABBREV, Sample.VOTE_COUNT);
+		tester.incrementVoteCount();
+		++counterIncrement;
+		assertEquals(counterIncrement, tester.getVoteCount());
 	}
 	
-	@Test /* Check if the candidate return correct vote listing9[ */
-	public void correctGetterForName() {
-		try {
-			Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, Sample.ABBREV, Sample.VOTE_COUNT);
-			assertEquals(Sample.NAME, tester.getName());
-		} catch (ElectionException e) {
-			fail("This test should not have an exception" + e.getMessage());
-		}
-	}
-
-	@Test /* Check if the candidate return correct vote listing9[ */
-	public void correctGetterForParty() {
-		try {
-			Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, Sample.ABBREV, Sample.VOTE_COUNT);
-			assertEquals(Sample.PARTY, tester.getParty());
-		} catch (ElectionException e) {
-			fail("This test should not have an exception" + e.getMessage());
-		}
-	}
-
-	@Test /* Check if the candidate return correct vote listing9[ */
-	public void correctGetterForVoteCount() {
-		try {
-			Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, Sample.ABBREV, Sample.VOTE_COUNT);
-			assertEquals(Sample.VOTE_COUNT, tester.getVoteCount());
-		} catch (ElectionException e) {
-			fail("This test should not have an exception" + e.getMessage());
-		}
-	}
-
-	@Test /* Check if the candidate return correct vote listing9[ */
-	public void correctGetterForVoteCountString() {
-		try {
-			String expectedString = Integer.toString(Sample.VOTE_COUNT);
-			Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, Sample.ABBREV, Sample.VOTE_COUNT);
-			assertEquals(expectedString, tester.getVoteCountString());
-		} catch (ElectionException e) {
-			fail("This test should not have an exception" + e.getMessage());
-		}
-	}
-
-	@Test /* Check if the candidate return correct vote listing9[ */
-	public void correctVoteCountIncrement() {
-		try {
-			int counterIncrement = Sample.VOTE_COUNT;
-			Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, Sample.ABBREV, Sample.VOTE_COUNT);
-			
-			// check if the increment is called one time
+	/** Purpose of the test:
+	 * Check if the candidate return correct vote increment
+	 * precondition: Sample is declared correctly.
+	 * postcondition: the candidate vote count is increased by the number of step (e.g. 1000)
+	 */
+	public void testMultiIncrementCount() throws ElectionException {
+		int counterIncrement = Sample.VOTE_COUNT;
+		Candidate tester = new Candidate(Sample.NAME, Sample.PARTY, Sample.ABBREV, Sample.VOTE_COUNT);
+		int stepToCheck = 1000;
+		for (int i = 0; i < stepToCheck; ++i) {
 			tester.incrementVoteCount();
 			++counterIncrement;
-			assertEquals(counterIncrement, tester.getVoteCount());
-			
-			// check if the increment is called many time
-			int stepToCheck = 1000;
-			for (int i = 0; i < stepToCheck; ++i) {
-				tester.incrementVoteCount();
-				++counterIncrement;
-			}
-			assertEquals(counterIncrement, tester.getVoteCount());
-		} catch (ElectionException e) {
-			fail("This test should not have an exception" + e.getMessage());
 		}
+		assertEquals(counterIncrement, tester.getVoteCount());
 	}
 
 	/* == END TEST SECTION ==
 	 * for Candidate class
 	 */
 	
-	/*************** Private Method *******************/
+	/*************** Private helper Method *******************/
+	/**
+	 * compareCandidate(): To compare two copy storing the same value.
+	 * @param copy1 not null
+	 * @param copy2 not null
+	 * @return true if to copy's toString are the same
+	 * 		   false otherwise
+	 */
 	private boolean compareCandidate(Candidate copy1, Candidate copy2) {
 		return copy1.toString().equals(copy2.toString());
 	}

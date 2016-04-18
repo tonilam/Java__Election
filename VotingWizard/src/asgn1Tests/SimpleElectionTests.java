@@ -32,22 +32,21 @@ public class SimpleElectionTests {
 			* precondition: eManager is not null and contains at least one election in the list
 			* postcondition: no error 
 	 		*/
-	public void isAbleToLoadData() throws FileNotFoundException, ElectionException, IOException, NumbersException {
+	public void testLoadDefsAndVotes() throws FileNotFoundException, ElectionException, IOException, NumbersException {
 		for (Election election : eManager.getElectionList()) {		
 			eManager.setElection(election);
 		}
 	}
-	
-	@Test (expected = Exception.class)
-		  /** Purpose of the test:
-			* Try to read a elections list which is not exist in the system.
-			* precondition: fakeFileName is not exist in the system
-			* postcondition: throw FileNotFoundException
-	 		*/
-	public void tryToLoadNonexistElectionsList() throws FileNotFoundException, ElectionException, IOException, NumbersException {
+
+	/** Purpose of the test:
+	 * Try to read a elections list which is not exist in the system.
+	 * precondition: fakeFileName is not exist in the system
+	 * postcondition: throw FileNotFoundException
+	 */
+	@Test (expected = FileNotFoundException.class)
+	public void testGetElectionsFromFileInvalidFilename() throws FileNotFoundException, ElectionException, IOException, NumbersException {
 		String fakeFileName = "test_not_exist";
 		eManager.getElectionsFromFile(fakeFileName);
-		fail("java.io.FileNoyFoundExcepption should be catch before running this assertion.");
 	}
 
 

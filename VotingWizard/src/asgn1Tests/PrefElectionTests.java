@@ -19,41 +19,127 @@ import asgn1Util.NumbersException;
 public class PrefElectionTests {
 	
 	ElectionManager eManager;
+	String prefElectionsList;
 
 	@Before @Test /* Initialize election manager */
 	public void setUp() throws FileNotFoundException, IOException, ElectionException, NumbersException {
+		prefElectionsList = ".//data//devtestdata/pref_elections.lst";
 		eManager = new ElectionManager();
-		String prefElectionsList = ".//data//devtestdata/pref_elections.lst";
 		eManager.getElectionsFromFile(prefElectionsList);
 	}
 	
-	@Test /** Purpose of the test:
-			* Try to load all elections as set in elections.lst
-			* precondition: eManager is not null and contains at least one election in the list
-			* postcondition: no error 
-	 		*/
-	public void isAbleToLoadData() throws FileNotFoundException, ElectionException, IOException, NumbersException {
+	/** Purpose of the test:
+	 * Try to load all elections as set in elections.lst
+	 * precondition: eManager is not null and contains at least one election in the list
+	 * postcondition: no error 
+	 */
+	@Test
+	public void testLoadDefs() throws FileNotFoundException, ElectionException, IOException, NumbersException {
 		for (Election election : eManager.getElectionList()) {		
-			eManager.setElection(election);
+			election.loadDefs();
+		}
+	}
+
+	/** Purpose of the test:
+	 * Try to load all elections as set in a invalid elections list
+	 * precondition: eManager is not null and contains at least one invalid election in the list
+	 * postcondition: FileNotFoundException thrown
+	 */
+	@Test (expected = FileNotFoundException.class)
+	public void testLoadDefsInvalidDefs() throws FileNotFoundException, ElectionException, IOException, NumbersException {
+		String invalidDefsList = ".//data//devtestdata/pref_elections_invalid_list.lst";
+		eManager.getElectionsFromFile(invalidDefsList);	
+		for (Election election : eManager.getElectionList()) {		
+			election.loadDefs();
 		}
 	}
 	
-	@Test (expected = Exception.class)
-		  /** Purpose of the test:
-			* Try to read a elections list which is not exist in the system.
-			* precondition: fakeFileName is not exist in the system
-			* postcondition: throw FileNotFoundException
-	 		*/
-	public void tryToLoadNonexistElectionsList() throws FileNotFoundException, ElectionException, IOException, NumbersException {
-		String fakeFileName = "test_not_exist";
-		eManager.getElectionsFromFile(fakeFileName);
-		fail("java.io.FileNoyFoundExcepption should be catch before running this assertion.");
+	/** Purpose of the test:
+	 * Try to load all elections as set in a elections list that contains invalid electorate file
+	 * precondition: eManager is not null and contains at least one invalid election in the list
+	 * postcondition: ElectionException thrown
+	 */
+	@Test (expected = ElectionException.class)
+	public void testLoadDefsInvalidElectorate() throws FileNotFoundException, ElectionException, IOException, NumbersException {
+		String invalidDefsList = ".//data//devtestdata/pref_elections_invalid_electorate.lst";
+		eManager.getElectionsFromFile(invalidDefsList);	
+		for (Election election : eManager.getElectionList()) {		
+			election.loadDefs();
+		}
 	}
 
+	/** Purpose of the test:
+	 * Try to load all elections as set in elections.lst
+	 * precondition: eManager is not null and contains at least one election in the list
+	 * postcondition: no error 
+	 */
+	@Test
+	public void testLoadVotes() throws FileNotFoundException, ElectionException, IOException, NumbersException {
+		eManager.getElectionsFromFile(prefElectionsList);	
+		for (Election election : eManager.getElectionList()) {		
+			election.loadDefs();
+			election.loadVotes();
+		}
+	}
 
-	//@Test
-	public void canFindWinner() throws FileNotFoundException, ElectionException, IOException, NumbersException {
+	/** Purpose of the test:
+	 * Try to load all elections as set in elections.lst
+	 * precondition: eManager is not null and contains at least one invalid election in the list
+	 * postcondition: FileNotFoundException thrown
+	 */
+	@Test (expected = FileNotFoundException.class)
+	public void testLoadVotesInvalidVotes() throws FileNotFoundException, ElectionException, IOException, NumbersException {
+		String invalidVotesList = ".//data//devtestdata/pref_elections_missing_vote.lst";
+		eManager.getElectionsFromFile(invalidVotesList);	
+		for (Election election : eManager.getElectionList()) {		
+			election.loadDefs();
+			election.loadVotes();
+		}
+	}
+	
+	/** Purpose of the test:
+	 * Try to load all elections as set in a elections list that contains invalid numCandidate setting
+	 * precondition: eManager is not null and contains at least one invalid election in the list
+	 * postcondition: NumbersException thrown
+	 */
+	@Test (expected = NumbersException.class)
+	public void testLoadDefsNumberException() throws FileNotFoundException, ElectionException, IOException, NumbersException {
+		String invalidVotesList = ".//data//devtestdata/pref_elections_defsnumberexception.lst";
+		eManager.getElectionsFromFile(invalidVotesList);	
+		for (Election election : eManager.getElectionList()) {		
+			election.loadDefs();
+		}
+	}
+	
+	/** Purpose of the test:
+	 * Try to load all elections as set in a elections list that contains invalid votes
+	 * precondition: eManager is not null and contains at least one invalid election in the list
+	 * postcondition: NumbersException thrown
+	 */
+	@Test
+	public void testLoadVotesNumberException() throws FileNotFoundException, ElectionException, IOException, NumbersException {
+		String invalidVotesList = ".//data//devtestdata/pref_elections_numberexception.lst";
+		eManager.getElectionsFromFile(invalidVotesList);	
+		for (Election election : eManager.getElectionList()) {		
+			election.loadDefs();
+			election.loadVotes();
+		}
+	}
+
+	/** Purpose of test:
+	 * check if the findWinner work properly
+	 * Hints: ElectionManager.manageCount() will call findWinner for all election stored.
+	 * precondition: eManager contains at least one preference election
+	 * postcondition: each result of manageCount() is not empty
+	 * @throws FileNotFoundException
+	 * @throws ElectionException
+	 * @throws IOException
+	 * @throws NumbersException
+	 */
+	@Test
+	public void testFindWinner() throws FileNotFoundException, ElectionException, IOException, NumbersException {
 		String result;
+		
 		for (Election election : eManager.getElectionList()) {		
 			eManager.setElection(election);
 			result = eManager.manageCount();
